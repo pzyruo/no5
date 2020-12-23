@@ -17,6 +17,14 @@ public class Users {
     // user_phone varchar
     private String userPhone;
 
+    public Users(int userId, String userName) {
+        this.userId = userId;
+        this.userName = userName;
+    }
+
+    public Users() {
+    }
+
     public int getUserId() {
         return userId;
     }

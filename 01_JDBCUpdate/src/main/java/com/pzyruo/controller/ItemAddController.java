@@ -19,7 +19,7 @@ public class ItemAddController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//1.接受参数
+        //1.接受参数
         int goodsId = Integer.parseInt(request.getParameter("goodsId"));
         int goodsNum = 1;
         if (request.getParameter("goodsNum")!=null){

@@ -7,6 +7,7 @@ import com.pzyruo.domain.Users;
 import com.pzyruo.util.JdbcUtils;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @ClassName ItemService
@@ -45,19 +46,36 @@ public class ItemService {
 
     }
 
-    public Items selectAll() {
-        
+    public List<Items> findByUser(Users users){
+        try {
+            System.out.println(users.getUserId());
+            List<Items> list = this.itemsDao.selectByUser(users.getUserId());
+            System.out.println(list);
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }finally{
+            JdbcUtils.closeConn();
+        }
+    }
 
+    public void updDateNum(int itemId,int num)  {
 
         try {
-           return itemsDao.selectAll();
-        }catch (Exception e){
+            JdbcUtils.getConnection().setAutoCommit(false);
+            this.itemsDao.upDateNum(itemId,num);
+            JdbcUtils.getConnection().commit();
+        } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                JdbcUtils.getConnection().rollback();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }finally {
             JdbcUtils.closeConn();
         }
-        return null;
-
 
     }
 }

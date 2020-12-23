@@ -23,6 +23,7 @@ public class GoodsListController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         SearchVO searchVO = new SearchVO();
+
         GoodsService service = new GoodsService();
         PageVO<Goods> pageVO = service.search(searchVO,1,4);
         request.setAttribute("pageVO",pageVO);

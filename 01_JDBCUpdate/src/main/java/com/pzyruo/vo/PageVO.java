@@ -43,5 +43,16 @@ public class PageVO<T> {
 	public void setList(List<T> list) {
 		this.list = list;
 	}
-	
+
+
+	@Override
+	public String toString() {
+		return "PageVO{" +
+				"page=" + page +
+				", recordOfPage=" + recordOfPage +
+				", pageCount=" + pageCount +
+				", recordCount=" + recordCount +
+				", list=" + list +
+				'}';
+	}
 }

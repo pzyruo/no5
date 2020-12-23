@@ -1,6 +1,6 @@
 package com.pzyruo.service;
 
-import com.pzyruo.dao.impl.TypesDao;
+import com.pzyruo.dao.TypesDao;
 import com.pzyruo.domain.Types;
 import com.pzyruo.util.JdbcUtils;
 

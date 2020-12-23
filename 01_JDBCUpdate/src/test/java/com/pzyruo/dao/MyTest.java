@@ -1,10 +1,6 @@
 package com.pzyruo.dao;
 
-import com.pzyruo.dao.impl.GoodsDaoImpl;
 import com.pzyruo.domain.Goods;
-import com.pzyruo.domain.Types;
-import com.pzyruo.service.GoodsService;
-import com.pzyruo.util.JdbcUtils;
 import org.junit.Test;
 
 import java.sql.SQLException;
@@ -20,7 +16,7 @@ import java.util.List;
 public class MyTest {
     @Test
     public void test1(){
-        GoodsDaoImpl dao = new GoodsDaoImpl();
+        GoodsDao dao = new GoodsDao();
         try {
             final List<Goods> goodsList = dao.selectAll();
             System.out.println(goodsList);

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -635,36 +635,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<!-- 商品内容 -->
 				<div class="product">
 					<ul class="clearfix">
-					<c:forEach items="${requestScope.pageVO.list }" var="goods">
-						<li>
-							<div class="hoverShow collect"><em></em>收藏</div>
-							<div class="show">
-								<a class="add" href="#">加入购物车</a>
-								<a class="contrast" href="#">商品对比</a>
-							</div>
-							<div class="proImg">
-								<a href="#">
-									<img class="lazy" src="js/lazyload/grey.gif" data-original="images/${goods.goodsImg }"
-										 alt="" width="165px" height="183px">
-								</a>
-							</div>
-							<div class="proTxt">
-							<c:choose>
-								<c:when test="${ fn:length(goods.goodsName) > 15 }">
-									<p><a href="#" title="${goods.goodsName}">${fn:substring(goods.goodsName,0,15) }...</a></p>
-								</c:when>
-								<c:otherwise>
-									<p><a href="#">${goods.goodsName }</a></p>
-								</c:otherwise>
-							</c:choose>
-								<p class="num">已售出1000件</p>
-								<p>
-									<strong><fmt:formatNumber value="${goods.goodsPrice}"  pattern="￥#,###.00" /></strong>
-									<s>￥${goods.goodsPrice * 2 }</s>
-								</p>
-							</div>
-						</li>
-					</c:forEach>
+						<c:forEach items="${requestScope.pageVO.list }" var="goods">
+							<li>
+								<div class="hoverShow collect"><em></em>收藏</div>
+								<div class="show">
+									<a class="add" href="${pageContext.request.contextPath }/cart/itemAdd.do?goodsId=${goods.goodsId}">加入购物车</a>
+									<a class="contrast" href="#">商品对比</a>
+								</div>
+								<div class="proImg">
+									<a href="#">
+										<img class="lazy" src="js/lazyload/grey.gif" data-original="images/${goods.goodsImg }"
+											 alt="" width="165px" height="183px">
+									</a>
+								</div>
+								<div class="proTxt">
+									<c:choose>
+										<c:when test="${ fn:length(goods.goodsName) > 15 }">
+											<p><a href="#" title="${goods.goodsName}">${fn:substring(goods.goodsName,0,15) }...</a></p>
+										</c:when>
+										<c:otherwise>
+											<p><a href="#">${goods.goodsName }</a></p>
+										</c:otherwise>
+									</c:choose>
+									<p class="num">已售出1000件</p>
+									<p>
+										<strong><fmt:formatNumber value="${goods.goodsPrice }"  pattern="￥#,###.00" /></strong>
+										<s>￥${goods.goodsPrice * 2 }</s>
+									</p>
+								</div>
+							</li>
+						</c:forEach>
 					</ul>
 				</div>
 				<!-- 底部页码 -->

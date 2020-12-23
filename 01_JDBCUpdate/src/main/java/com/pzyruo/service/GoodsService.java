@@ -1,6 +1,6 @@
 package com.pzyruo.service;
 
-import com.pzyruo.dao.impl.GoodsDaoImpl;
+import com.pzyruo.dao.GoodsDao;
 import com.pzyruo.domain.Goods;
 import com.pzyruo.exception.GoodsNameException;
 import com.pzyruo.util.ConnUtil;
@@ -19,7 +19,7 @@ import java.util.List;
  * @Version 1.0
  **/
 public class GoodsService {
-    private GoodsDaoImpl goodsDao = new GoodsDaoImpl();
+    private GoodsDao goodsDao = new GoodsDao();
     
     
 
@@ -81,7 +81,7 @@ public class GoodsService {
             pageVO.setList(goodsList);
             return pageVO;
         } finally {
-            ConnUtil.closeConn();// 连接关闭
+            JdbcUtils.closeConn();// 连接关闭
         }
     }
 

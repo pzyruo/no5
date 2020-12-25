@@ -78,7 +78,7 @@
 							<span>记住密码</span>
 							<a target="_blank" href="#">忘记密码？</a>
 						</p>
-						<a class="loGin W310" href="userlogin.do">登录</a>
+						<a class="loGin W310" href="userLogin.do">登录</a>
 					</div>
 					<div class="MCleft W115">
 						<img src="images/AppEr.png" alt="二维码">

@@ -15,22 +15,22 @@ import java.util.Map;
 @WebServlet("/cart/updateNum.do")
 public class CartUpdateNumController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request,response);
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int itemId = Integer.parseInt(request.getParameter("itemId"));
         int num = Integer.parseInt(request.getParameter("num"));
         //2
         ItemService itemService = new ItemService();
         itemService.updDateNum(itemId,num);
         //3
-        System.out.println(itemId+"我是id");
-        System.out.println("我是数量"+num);
-        ObjectMapper mapper = new ObjectMapper();
         Map<String,Object> map = new HashMap<>();
         map.put("isok",true);
-        String s = mapper.writeValueAsString(map);
-        System.out.println(s);
-    }
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.writeValue(response.getWriter(),map);
+//        final String m = mapper.writeValueAsString(map);
+//        System.out.println(m);
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      doPost(request,response);
     }
 }

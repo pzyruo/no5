@@ -82,7 +82,16 @@ public class ItemsDao {
     }
 
     public void upDateNum(int itemId,int num){
-        String sql = "update shp_item set item_goods_num=? where item_id=?";
+        String sql = "update shop_item set item_goods_num=? where item_id=?";
         template.update(sql,num,itemId);
     }
+
+    public void deleteByUser(int userId) throws SQLException{
+        String sql = "delete from shop_item where item_user_id = ?";
+        Connection conn = JdbcUtils.getConnection();
+        PreparedStatement pstat = conn.prepareStatement(sql);
+        pstat.setInt(1, userId);
+        pstat.executeUpdate();
+    }
+
 }

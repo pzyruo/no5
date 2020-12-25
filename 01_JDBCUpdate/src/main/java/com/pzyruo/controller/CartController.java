@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 public class CartController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		Users user = (Users) request.getSession().getAttribute("user");
-		System.out.println("购物车对象"+user);
 		ItemService itemService = new ItemService();
 		List<Items> itemList = itemService.findByUser(user);
 		request.setAttribute("itemList", itemList);

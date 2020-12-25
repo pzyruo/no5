@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="css/reset.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/Cart.css">
+
 </head>
 <body>
 <!-- 顶部 -->
@@ -231,6 +232,7 @@
 				<span>新郑综合保税区</span>
 			</h4>
 			<ul class="IAbdArea">
+
 			<c:forEach items="${requestScope.itemList }" var="item">
 				<li class="IAbdw">
 					<span class="lincheck checkbox"></span>
@@ -266,6 +268,17 @@
 						</li>
 					</ul>
 				</li>
+
+<%--				 <c:forEach items="${requestScope.itemsList}" var="item">
+                        <li class="first">
+                            <p>${item.itemGoods.goodsName}</p>
+                        </li>
+                        <li>${item.itemGoods.goodsNum}</li>
+                        <li>￥{item.itemGoods.goodsPrice}</li>
+                        <li>200t</li>
+                        <li>￥${item.itemGoods.goodsPrice}</li>
+                        <li>￥${item.itemGoods.goodsPrice*2}</li>
+                    </c:forEach>--%>
 			</c:forEach>
 			</ul>
 			<div class="account">
@@ -280,7 +293,7 @@
 				<span class="checkbox Allcheck"></span>
 				<span>全选</span>
 				<span class="Information">删除选中商品</span>
-				<a href="#">去结算</a>
+				<a href="${pageContext.request.contextPath}/order/confirm.do">去结算</a>
 				<p>
 					<strong>已选商品<b id="allnum"> 1 </b>件</strong>
 					<strong>总价（不含运费）：<b>￥<u id="allpri">0.00</u></b></strong><br>

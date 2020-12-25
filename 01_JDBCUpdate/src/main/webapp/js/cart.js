@@ -38,42 +38,42 @@ $(function() {
 		$(this).parentsUntil('.IAbdArea').remove();
 	});
 	// 购物车金额结算
-	$('.IAul.reduce').click(function(event) {
-		alert("12312")
+	$(' .IAul .reduce').click(function(event){
 		var reduceObj = $(this);
 		var n=parseFloat(reduceObj.siblings('input').val());
 		n--;
 		if (n>=1) {
 			//ajax.
 			var itemId = reduceObj.attr("itemId");
+			alert("reduce");
 			$.ajax({
-				type:"POST",
+				type:"GET",
 				data:{"itemId":itemId,"num":n},
-				url:"cart/updatenum.do",
+				url:"cart/updateNum.do",
 				dataType:"JSON",
 				success:function(dataObj){
-					if(dataObj.isok){
+					if(dataObj.isok) {
 						reduceObj.siblings('input').val(n);
-						var onePreice=parseFloat(reduceObj.parent('.num').siblings('.price').find('u').html());
-						var OlAll=n*onePreice;
+						var onePreice = parseFloat(reduceObj.parent('.num').siblings('.price').find('u').html());
+						var OlAll = n * onePreice;
 						reduceObj.parent('li').siblings('.Lastprice').children('u').html(OlAll.toFixed(2));
 						console.log(OlAll);
-						setTotal(); 
+						setTotal();
 					}
 				}
 			});
 		}
 	});
-	$('.IAul.add').click(function(event) {
-		alert("12312")
+	$(' .IAul .add').click(function(event) {
 		var addObj = $(this);
 		var n=parseFloat(addObj.siblings('input').val());
 		n++;
 		var itemId = addObj.attr("itemId");
+		// alert("add");
 		$.ajax({
-			type:"POST",
+			type:"GET",
 			data:{"itemId":itemId,"num":n},
-			url:"cart/updatenum.do",
+			url:"cart/updateNum.do",
 			dataType:"JSON",
 			success:function(dataObj){
 				if(dataObj.isok){
@@ -83,9 +83,14 @@ $(function() {
 					addObj.parent('li').siblings('.Lastprice').children('u').html(OlAll.toFixed(2));
 					setTotal(); 
 				}
+			},
+			error:function (){
+				alert("error");
 			}
 		});
 	});
+
+
 	function setTotal(){
 		var s=0;
 		var nu=0;

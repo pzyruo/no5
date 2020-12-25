@@ -1,6 +1,7 @@
 package com.pzyruo.controller;
 
 import com.pzyruo.domain.Users;
+import com.pzyruo.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,8 +17,8 @@ public class UserLoginController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Users user = new Users();
-        user.setUserId(1);
+        UserService service = new UserService();
+        Users user = service.findUser();
         request.getSession().setAttribute("user", user);
         response.sendRedirect(request.getContextPath() + "/goods/list.do");
     }

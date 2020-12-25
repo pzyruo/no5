@@ -150,7 +150,7 @@ $(function() {
 		$(this).addClass('no').siblings('.left').removeClass('no');
 		HRWautoPlay();
 	});
-	$('..hotRecommend .cup .left').click(function(event) {
+	$('.hotRecommend .cup .left').click(function(event) {
 		$(this).addClass('no').siblings('.right').removeClass('no');
 		HRWprevPlay();
 	});
@@ -191,12 +191,16 @@ $(function() {
 		});
 	});
 	// 提交订单的复选框
+
 	$('.address .checkbox').click(function(event) {
-		if ($(this).hasClass('checked')) {
-			$(this).removeClass('checked');
-		}else{
-			$(this).addClass('checked').siblings('li').removeClass('checked');
-		}
+
+		$(this).addClass('checked').siblings('li').removeClass('checked');
+		//设置表单参数
+		$("#recId").val($(this).attr("recId"));
+		$("#recName").val($(this).attr("recName"));
+		$("#recAdd").val($(this).attr("recAdd"));
+		$("#recPhone").val($(this).attr("recPhone"));
+
 	});
 	$('.protocol .checkbox').click(function(event) {
 		if ($(this).hasClass('checked')) {

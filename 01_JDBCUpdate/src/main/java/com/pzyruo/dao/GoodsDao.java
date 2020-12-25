@@ -119,4 +119,14 @@ public class GoodsDao {
 
        return template.query(sql, new BeanPropertyRowMapper<>(Goods.class));
    }
+
+    public void updateNum(int goodsId,int num) throws SQLException{
+        String sql = "update goods set goods_num = ? where goods_id = ?";
+        Connection conn = JdbcUtils.getConnection();
+        PreparedStatement pstat = conn.prepareStatement(sql);
+        pstat.setInt(1, num);
+        pstat.setInt(2, goodsId);
+        pstat.executeUpdate();
+    }
+
 }

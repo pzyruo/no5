@@ -2,7 +2,7 @@ package com.pzyruo.dao;
 
 import com.pzyruo.domain.Funs;
 import com.pzyruo.domain.Roles;
-import com.pzyruo.util.ConnUtil;
+
 import com.pzyruo.util.JdbcUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -41,7 +41,7 @@ public class FunDao {
         String sql = "select * from funs where fun_id in "
                 + " (select permission_fun_id from permissions where permission_role_id = ?) "
                 + " order by fun_sort";
-        Connection conn = ConnUtil.getConn();
+        Connection conn = JdbcUtils.getConnection();
         PreparedStatement pstat = conn.prepareStatement(sql);
         pstat.setInt(1, roleId);
         ResultSet rs = pstat.executeQuery();
@@ -65,7 +65,7 @@ public class FunDao {
     public List<Funs> selectSecFun(int funId) throws SQLException{
         List<Funs> funList = new ArrayList<Funs>();
         String sql = "select * from funs where fun_pid = ? order by fun_sort";
-        Connection conn = ConnUtil.getConn();
+        Connection conn = JdbcUtils.getConnection();
         PreparedStatement pstat = conn.prepareStatement(sql);
         pstat.setInt(1, funId);
         ResultSet rs = pstat.executeQuery();

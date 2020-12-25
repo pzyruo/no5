@@ -4,6 +4,8 @@ import com.pzyruo.dao.AdminDao;
 import com.pzyruo.domain.Admins;
 import com.pzyruo.util.JdbcUtils;
 
+import java.sql.SQLException;
+
 /**
  * @ClassName AdminService
  * @Description TODO
@@ -15,12 +17,13 @@ public class AdminService {
     private AdminDao adminDao = new AdminDao();
 
     public Admins findByName(String adminName){
-
         try {
             return this.adminDao.selectByName(adminName);
-        }finally {
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally{
             JdbcUtils.closeConn();
         }
-
     }
 }

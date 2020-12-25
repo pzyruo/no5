@@ -1,9 +1,15 @@
 package com.pzyruo.dao;
 
 import com.pzyruo.domain.Admins;
+import com.pzyruo.domain.Roles;
 import com.pzyruo.util.JdbcUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * @ClassName AdminDao
@@ -15,19 +21,28 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class AdminDao {
     JdbcTemplate template = new JdbcTemplate(JdbcUtils.getDataSource());
 
-    public Admins selectByName(String adminName){
-        String sql ="select * from admins left join roles " +
-                "on admin_role_id =role_id" +
-                " where admin_name=?";
-        try {
-            return template.queryForObject(sql,new BeanPropertyRowMapper<>(Admins.class),adminName);
-        }catch (Exception e){
-            e.printStackTrace();
+    public Admins selectByName(String adminName) throws SQLException {
+        String sql = "select * from admins left join roles "
+                + " on admin_role_id = role_id "
+                + " where admin_name=?";
+        Connection conn = JdbcUtils.getConnection();
+        PreparedStatement pstat = conn.prepareStatement(sql);
+        pstat.setString(1, adminName);
+        ResultSet rs = pstat.executeQuery();
+        if (rs.next()) {
+            Admins admin = new Admins();
+            admin.setAdminId(rs.getInt(""));
+            admin.setAdminName(rs.getString(""));
+            admin.setAdminPass(rs.getString(""));
+
+            Roles role = new Roles();
+            role.setRoleId(rs.getInt(""));
+            role.setRoleName(rs.getString(""));
+            admin.setAdminRole(role);
+            return admin;
+        } else {
+            return null;
         }
-
-        return null;
-
-
     }
 
-}
+    }

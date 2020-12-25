@@ -29,6 +29,7 @@ public class AdminLoginController extends HttpServlet {
         // 2
         AdminService adminsService = new AdminService();
         Admins admin = adminsService.findByName(adminName);
+        System.out.println("123"+admin);
         if(admin==null){
             response.sendRedirect(request.getContextPath()+"/adminlogin.jsp");
         }else{
@@ -39,6 +40,7 @@ public class AdminLoginController extends HttpServlet {
 
                 HttpSession session = request.getSession();
                 session.setAttribute("admin", admin);
+                System.out.println("45*6"+admin);
                 response.sendRedirect(request.getContextPath()+"/admin/main.jsp");
             }else{
                 response.sendRedirect(request.getContextPath()+"/adminlogin.jsp");

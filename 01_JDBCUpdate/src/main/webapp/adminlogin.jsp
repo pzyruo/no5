@@ -36,7 +36,7 @@ body {
 </style>
   </head>
   
-  <body><form name="adminloginform" action="${pageContext.request.contextPath }/adminlogin.servlet" method="post">
+  <body><form name="adminloginform" action="${pageContext.request.contextPath }/adminLogin.do" method="post">
  <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td><table width="962" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -51,14 +51,14 @@ body {
               <tr>
                 <td width="16%" height="25"><div align="right"><span class="STYLE1">用户</span></div></td>
                 <td width="57%" height="25"><div align="center">
-                  <input type="text" name="username" style="width:105px; height:17px; background-color:#292929; border:solid 1px #7dbad7; font-size:12px; color:#6cd0ff">
+                  <input type="text" name="adminName" style="width:105px; height:17px; background-color:#292929; border:solid 1px #7dbad7; font-size:12px; color:#6cd0ff">
                 </div></td>
                 <td width="27%" height="25">&nbsp;</td>
               </tr>
               <tr>
                 <td height="25"><div align="right"><span class="STYLE1">密码</span></div></td>
                 <td height="25"><div align="center">
-                  <input type="password" name="password" style="width:105px; height:17px; background-color:#292929; border:solid 1px #7dbad7; font-size:12px; color:#6cd0ff">
+                  <input type="password" name="adminPass" style="width:105px; height:17px; background-color:#292929; border:solid 1px #7dbad7; font-size:12px; color:#6cd0ff">
                 </div></td>
                 <td height="25"><div align="left"><a href="javascript:document.adminloginform.submit()"><img src="images/dl.gif" width="49" height="18" border="0"></a></div></td>
               </tr>

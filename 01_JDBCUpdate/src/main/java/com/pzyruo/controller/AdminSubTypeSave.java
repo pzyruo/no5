@@ -12,11 +12,13 @@ import java.io.IOException;
 
 @WebServlet("/admin/types/oneSave.do")
 public class AdminSubTypeSave extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         doGet(request,response);
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         final String typeName = request.getParameter("typeName");
         final int pid = Integer.parseInt(request.getParameter("pid"));

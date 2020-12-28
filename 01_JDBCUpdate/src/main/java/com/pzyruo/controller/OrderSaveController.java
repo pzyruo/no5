@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/order/save.do")
 public class OrderSaveController extends HttpServlet {
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		/// 1
@@ -66,6 +67,7 @@ public class OrderSaveController extends HttpServlet {
 		response.sendRedirect(request.getContextPath()+"/order/topay.do?orderId="+orderId);
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);

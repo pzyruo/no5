@@ -36,9 +36,6 @@ public class RecDao {
             rec.setRecName(rs.getString("recipients_name"));
             rec.setRecPhone(rs.getString("recipients_phone"));
             rec.setRecUserId(rs.getInt("recipients_user_id"));
-            // Users user = new Users();
-            // user.setUserId(rs.getInt(""));
-            // rec.setRecUser(user);
             recList.add(rec);
         }
         return recList;

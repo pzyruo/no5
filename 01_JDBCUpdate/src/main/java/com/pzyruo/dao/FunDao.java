@@ -1,10 +1,8 @@
 package com.pzyruo.dao;
 
 import com.pzyruo.domain.Funs;
-import com.pzyruo.domain.Roles;
 
 import com.pzyruo.util.JdbcUtils;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.Connection;

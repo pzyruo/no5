@@ -2,7 +2,10 @@ package com.pzyruo.service;
 
 import com.pzyruo.dao.AdminDao;
 import com.pzyruo.domain.Admins;
+import com.pzyruo.exception.NameException;
+import com.pzyruo.exception.PassWordException;
 import com.pzyruo.util.JdbcUtils;
+import com.pzyruo.util.MD5Util;
 
 import java.sql.SQLException;
 
@@ -16,14 +19,23 @@ import java.sql.SQLException;
 public class AdminService {
     private AdminDao adminDao = new AdminDao();
 
-    public Admins findByName(String adminName){
+    public Admins isLogin(String adminName, String adminPass) throws NameException, PassWordException {
+
         try {
-            return this.adminDao.selectByName(adminName);
+            Admins admin = this.adminDao.selectByName(adminName);
+            if (admin==null){
+                throw new NameException("管理员不存在");
+            }else {
+                if (admin.getAdminPass().equals(MD5Util.getMd5(adminPass))){
+                    return admin;
+                }else {
+                    throw  new PassWordException("密码错误");
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
-        } finally{
-            JdbcUtils.closeConn();
         }
-    }
+        }
+
 }

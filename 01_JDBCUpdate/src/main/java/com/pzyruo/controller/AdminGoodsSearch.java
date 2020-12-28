@@ -14,6 +14,7 @@ import java.util.List;
 @WebServlet("/admin/goods/search.do")
 public class AdminGoodsSearch extends HttpServlet {
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //2.调用业务
         GoodsService goodsService = new GoodsService();
@@ -25,6 +26,7 @@ public class AdminGoodsSearch extends HttpServlet {
 
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         doPost(request,response);

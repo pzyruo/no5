@@ -13,11 +13,13 @@ import java.io.IOException;
 
 @WebServlet("/cart/itemAdd.do")
 public class ItemAddController extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);
 
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //1.接受参数
         int goodsId = Integer.parseInt(request.getParameter("goodsId"));

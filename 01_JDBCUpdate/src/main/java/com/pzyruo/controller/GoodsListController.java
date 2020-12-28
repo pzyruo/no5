@@ -14,12 +14,14 @@ import java.io.IOException;
 
 @WebServlet("/goods/list.do")
 public class GoodsListController extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         doGet(request,response);
 
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         SearchVO searchVO = new SearchVO();

@@ -2,6 +2,7 @@ com\pzyruo\dao\FunDao.class
 com\pzyruo\controller\CartUpdateNumController.class
 com\pzyruo\controller\AdminGoodsUpdate.class
 com\pzyruo\domain\Goods.class
+com\pzyruo\exception\NameException.class
 com\pzyruo\controller\alipay\AlipayConfig.class
 com\pzyruo\controller\AdminTypesSearch.class
 com\pzyruo\domain\Recipients.class
@@ -16,6 +17,7 @@ com\pzyruo\service\TypesService.class
 com\pzyruo\domain\Details.class
 com\pzyruo\dao\RecDao.class
 com\pzyruo\controller\UserLoginController.class
+com\pzyruo\exception\PassWordException.class
 com\pzyruo\controller\OrderPayCallback.class
 com\pzyruo\util\AlipayConfig.class
 com\pzyruo\controller\AdminGoodsSave.class

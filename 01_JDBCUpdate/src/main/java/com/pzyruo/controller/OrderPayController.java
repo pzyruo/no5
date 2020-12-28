@@ -14,6 +14,7 @@ import java.io.IOException;
 
 @WebServlet("/order/pay.do")
 public class OrderPayController extends HttpServlet {
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -53,6 +54,7 @@ public class OrderPayController extends HttpServlet {
 
     }
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);

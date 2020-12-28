@@ -14,10 +14,12 @@ import java.util.Map;
 
 @WebServlet("/cart/updateNum.do")
 public class CartUpdateNumController extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int itemId = Integer.parseInt(request.getParameter("itemId"));
         int num = Integer.parseInt(request.getParameter("num"));
@@ -25,7 +27,7 @@ public class CartUpdateNumController extends HttpServlet {
         ItemService itemService = new ItemService();
         itemService.updDateNum(itemId,num);
         //3
-        Map<String,Object> map = new HashMap<>();
+        Map<String,Object> map = new HashMap<>(10);
         map.put("isok",true);
         ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(response.getWriter(),map);

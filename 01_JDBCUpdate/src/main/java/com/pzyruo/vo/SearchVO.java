@@ -37,6 +37,14 @@ public class SearchVO {
 	public void setTypeId(Integer typeId) {
 		this.typeId = typeId;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "SearchVO{" +
+				"goodsName='" + goodsName + '\'' +
+				", minGoodsPrice=" + minGoodsPrice +
+				", maxGoodsPrice=" + maxGoodsPrice +
+				", typeId=" + typeId +
+				'}';
+	}
 }

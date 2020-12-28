@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/cart/cart.do")
 public class CartController extends HttpServlet {
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -26,6 +27,7 @@ public class CartController extends HttpServlet {
 		request.getRequestDispatcher("/cart/cart3.jsp").forward(request, response);
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		    doGet(request, response);

@@ -31,13 +31,13 @@ public class AdminDao {
         ResultSet rs = pstat.executeQuery();
         if (rs.next()) {
             Admins admin = new Admins();
-            admin.setAdminId(rs.getInt(""));
-            admin.setAdminName(rs.getString(""));
-            admin.setAdminPass(rs.getString(""));
+            admin.setAdminId(rs.getInt("admin_id"));
+            admin.setAdminName(rs.getString("admin_name"));
+            admin.setAdminPass(rs.getString("admin_pass"));
 
             Roles role = new Roles();
-            role.setRoleId(rs.getInt(""));
-            role.setRoleName(rs.getString(""));
+            role.setRoleId(rs.getInt("role_id"));
+            role.setRoleName(rs.getString("role_name"));
             admin.setAdminRole(role);
             return admin;
         } else {

@@ -39,4 +39,13 @@ public class Roles {
     public void setFunList(List<Funs> funList) {
         this.funList = funList;
     }
+
+    @Override
+    public String toString() {
+        return "Roles{" +
+                "roleId=" + roleId +
+                ", roleName='" + roleName + '\'' +
+                ", funList=" + funList +
+                '}';
+    }
 }

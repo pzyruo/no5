@@ -13,11 +13,13 @@ import java.util.List;
 
 @WebServlet("/admin/types/search.do")
 public class AdminTypesSearch extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         this.doGet(request,response);
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("进入商品类型查询");
         TypesService typesService = new TypesService();

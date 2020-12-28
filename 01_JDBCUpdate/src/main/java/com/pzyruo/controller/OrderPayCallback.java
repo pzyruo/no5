@@ -17,6 +17,7 @@ import java.util.Map;
 
 @WebServlet("/order/payCallback.do")
 public class OrderPayCallback extends HttpServlet {
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -27,7 +28,7 @@ public class OrderPayCallback extends HttpServlet {
              * 该页面仅做页面展示，业务逻辑处理请勿在该页面执行
              */
             // 获取支付宝GET过来反馈信息
-            Map<String, String> params = new HashMap<String, String>();
+            Map<String, String> params = new HashMap<>(10);
             Map<String, String[]> requestParams = request.getParameterMap();
             for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext();) {
                 String name = (String) iter.next();
@@ -51,8 +52,6 @@ public class OrderPayCallback extends HttpServlet {
                 String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"), "UTF-8");
                 // 付款金额
                 String total_amount = new String(request.getParameter("total_amount").getBytes("ISO-8859-1"), "UTF-8");
-                // String body=new  String(request.getParameter("body").getBytes("ISO-8859-1"),"UTF-8");
-                // 修改订单号的状态
                 OrderService orderService = new OrderService();
                 Orders orders = new Orders();
                 orders.setOrderId(out_trade_no);
@@ -61,7 +60,6 @@ public class OrderPayCallback extends HttpServlet {
                 request.getRequestDispatcher("/memer/allorder.jsp").forward(request, response);
 
             } else {
-                // out.println("验签失败");
                 request.setAttribute("reuslt", "支付失败");
                 request.getRequestDispatcher("/payError.jsp").forward(request,response);
             }
@@ -70,6 +68,7 @@ public class OrderPayCallback extends HttpServlet {
         }
     }
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // TODO Auto-generated method stub

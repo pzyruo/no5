@@ -12,10 +12,12 @@ import javax.servlet.annotation.WebListener;
 
 @WebListener
 public class ServletListener implements ServletContextListener {
-    public void contextDestroyed(ServletContextEvent arg0)  { 
+    @Override
+	public void contextDestroyed(ServletContextEvent arg0)  {
     	System.out.println("应用程序对象的销毁");
     }
-    public void contextInitialized(ServletContextEvent arg0)  { 
+    @Override
+	public void contextInitialized(ServletContextEvent arg0)  {
     	System.out.println("应用程序对象的创建");
     	//获取应用程序使用域对象
     	ServletContext application = arg0.getServletContext();

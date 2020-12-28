@@ -7,19 +7,20 @@ import com.pzyruo.service.GoodsService;
 import com.pzyruo.util.FileUtil;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.IOException;
-import java.lang.reflect.Type;
+import java.util.Objects;
 
 
-@MultipartConfig
+
 @WebServlet("/admin/goods/save.do")
 public class AdminGoodsSave extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         Part part = request.getPart("goodsImg");
@@ -59,10 +60,12 @@ public class AdminGoodsSave extends HttpServlet {
             request.setAttribute("errorInfo",e.getMessage());
             request.getRequestDispatcher("/admin/goods/newgoods.jsp").forward(request,response);
         }
+        boolean equals = Objects.equals("a", "b");
+        System.out.println(equals);
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("utf-8");
         doPost(request,response);
     }
 }

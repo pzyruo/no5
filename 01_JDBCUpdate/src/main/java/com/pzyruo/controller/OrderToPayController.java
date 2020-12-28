@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/order/topay.do")
 public class OrderToPayController extends HttpServlet {
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//1
@@ -26,6 +27,7 @@ public class OrderToPayController extends HttpServlet {
 		request.setAttribute("order", order);
 		request.getRequestDispatcher("/order/pay.jsp").forward(request, response);
 	}
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");

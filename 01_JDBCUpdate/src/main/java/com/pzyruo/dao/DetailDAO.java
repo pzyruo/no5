@@ -15,6 +15,7 @@ public class DetailDAO {
 				+ " order_details(detail_order_id,detail_goods_id,detail_goods_num,detail_goods_price) "
 				+ " values(?,?,?,?)";
 		Connection conn = JdbcUtils.getConnection();
+
 		PreparedStatement pstat = conn.prepareStatement(sql);
 		pstat.setString(1, detail.getDetailOrder().getOrderId());
 		pstat.setInt(2, detail.getDetailGoods().getGoodsId());

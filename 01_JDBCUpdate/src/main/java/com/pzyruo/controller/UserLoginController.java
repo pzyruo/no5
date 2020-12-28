@@ -12,10 +12,12 @@ import java.io.IOException;
 
 @WebServlet("/userLogin.do")
 public class UserLoginController extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       doGet(request,response);
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserService service = new UserService();
         Users user = service.findUser();

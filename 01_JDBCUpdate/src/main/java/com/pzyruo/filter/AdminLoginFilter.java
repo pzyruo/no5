@@ -10,9 +10,11 @@ import java.io.IOException;
 
 @WebFilter( urlPatterns={  "/admin/*" } , dispatcherTypes={DispatcherType.REQUEST,DispatcherType.FORWARD,DispatcherType.ASYNC})
 public class AdminLoginFilter implements Filter {
+    @Override
     public void destroy() {
     }
 
+    @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         System.out.println("AdminLoginFilter.doFilter");
         HttpServletRequest httpRequest = (HttpServletRequest) req;
@@ -20,11 +22,13 @@ public class AdminLoginFilter implements Filter {
 
         HttpSession session = httpRequest.getSession();
         if (session.getAttribute("admin") != null) {
-            chain.doFilter(httpRequest, httpResponse);// 放行
+            // 放行
+            chain.doFilter(httpRequest, httpResponse);
         } else {
             httpResponse.sendRedirect(httpRequest.getContextPath()+"/adminlogin.jsp");
         }    }
 
+    @Override
     public void init(FilterConfig config) throws ServletException {
 
     }

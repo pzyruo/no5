@@ -2,15 +2,18 @@ package com.pzyruo.vo;
 
 import java.util.List;
 
+/**
+ * @author 我的电脑
+ */
 public class PageVO<T> {
 	// 1 当前页码 page 用户指定
-	private int page;
+	private Integer page;
 	// 2 每页记录数量 recordOfPage 程序员指定
-	private int recordOfPage;
+	private Integer recordOfPage;
 	// 3 最大页码 pageCount 公式计算 pageCount =（（recordCount-1）/ recordOfPage）+ 1
-	private int pageCount;
+	private Integer pageCount;
 	// 4 总记录数量 recordCount 查询 select count(*)
-	private int recordCount;
+	private Integer recordCount;
 	// 5 当页记录集合 list 查询 limit
 	private List<T> list;
 	public int getPage() {

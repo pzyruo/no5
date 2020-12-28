@@ -12,11 +12,13 @@ import java.io.IOException;
 
 @WebServlet("/admin/types/searchByID.do")
 public class AdminTypesSearchByID extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         doGet(request,response);
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         final int id = Integer.parseInt(request.getParameter("typeId"));
         TypesService service = new TypesService();

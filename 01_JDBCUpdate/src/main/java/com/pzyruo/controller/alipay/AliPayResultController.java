@@ -18,6 +18,7 @@ import com.alipay.api.internal.util.AlipaySignature;
  */
 @WebServlet("/alipayresult.do")
 public class AliPayResultController extends HttpServlet {
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
@@ -28,7 +29,7 @@ public class AliPayResultController extends HttpServlet {
 			 * 该页面仅做页面展示，业务逻辑处理请勿在该页面执行
 			 */
 			// 获取支付宝GET过来反馈信息
-			Map<String, String> params = new HashMap<String, String>();
+			Map<String, String> params = new HashMap<>(10);
 			Map<String, String[]> requestParams = request.getParameterMap();
 			for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext();) {
 				String name = (String) iter.next();
@@ -56,11 +57,9 @@ public class AliPayResultController extends HttpServlet {
 				// 修改订单号的状态
 				
 				
-				// out.println("trade_no:"+trade_no+"<br/>out_trade_no:"+out_trade_no+"<br/>total_amount:"+total_amount);
 				request.setAttribute("reuslt", "trade_no:" + trade_no + "<br/>out_trade_no:" + out_trade_no
 						+ "<br/>total_amount:" + total_amount);
 			} else {
-				// out.println("验签失败");
 				request.setAttribute("reuslt", "支付失败");
 			}
 		} catch (Exception e) {
@@ -70,6 +69,7 @@ public class AliPayResultController extends HttpServlet {
 		request.getRequestDispatcher("/payResult.jsp").forward(request, response);
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub

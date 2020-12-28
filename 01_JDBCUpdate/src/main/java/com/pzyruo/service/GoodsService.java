@@ -70,8 +70,12 @@ public class GoodsService {
             PageVO<Goods> pageVO = new PageVO<>();
             int recordCount = this.goodsDao.getRecordCount(searchVO);
             int pageCount = ((recordCount - 1) / recordOfPage) + 1;
-            if(page<1) page=1;
-            if(page>pageCount)page=pageCount;
+            if (page<1) {
+                page=1;
+            }
+            if (page>pageCount) {
+                page=pageCount;
+            }
             List<Goods> goodsList = this.goodsDao.select(searchVO, page, recordOfPage);
 
             pageVO.setPage(page);

@@ -31,8 +31,8 @@ public class ALSendController extends HttpServlet {
 		final String product = "Dysmsapi";// 短信API产品名称
 		final String domain = "dysmsapi.aliyuncs.com";// 短信API产品域名
 		// 替换成你的AK
-		final String accessKeyId = "LTAIaywLaOP7Vbts";// 你的accessKeyId,参考本文档步骤2
-		final String accessKeySecret = "C0znGTQY3X6Ahh57bHTCLRnL7IY2wN";// 你的accessKeySecret，参考本文档步骤2
+		final String accessKeyId = "121321";// 你的accessKeyId,参考本文档步骤2
+		final String accessKeySecret = "213213212";// 你的accessKeySecret，参考本文档步骤2
 		// 初始化ascClient,暂时不支持多region
 		IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", accessKeyId, accessKeySecret);
 		try {

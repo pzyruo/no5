@@ -24,20 +24,27 @@ public class AdminGoodsSave extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         Part part = request.getPart("goodsImg");
+
         // 获取文件真实名称
         String realFileName = part.getSubmittedFileName();
         System.out.println("真实文件名称：" + realFileName);
+
         // 获取随机名称
         String saveFielName = FileUtil.ReFileName();
         System.out.println("保存文件名称：" + saveFielName);
+
         // 获取文件后缀
         String saveTypeName = FileUtil.RealFileName(realFileName);
         System.out.println("保存后缀名称：" + saveTypeName);
+
+        //获取修改后的文件名称
         String goodsImg = saveFielName + saveTypeName;
         System.out.println("保存图片名称：" + goodsImg);
+
         // 获取URL对应的物理路径
         String realPath = request.getServletContext().getRealPath("/img/");
         System.out.println("保存物理路径：" + realPath);
+
         // 调用方法实现另存为
         part.write(realPath + goodsImg);
 

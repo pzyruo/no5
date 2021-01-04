@@ -23,8 +23,14 @@ public class GoodsDao {
     JdbcTemplate template = new JdbcTemplate(JdbcUtils.getDataSource());
 
 
-    public int getRecordCount(SearchVO vo){
-        return 1;
+    public int getRecordCount(SearchVO vo) throws SQLException {
+
+        String sql ="select count(1) from goods"+SqlUtil.getWhere(vo);
+        Connection conn = JdbcUtils.getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        return rs.getInt(1);
     }
     /*
             * @Description: 查询所有
@@ -128,5 +134,6 @@ public class GoodsDao {
         pstat.setInt(2, goodsId);
         pstat.executeUpdate();
     }
+
 
 }

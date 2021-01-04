@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-@WebFilter( urlPatterns={  "/admin/*" } , dispatcherTypes={DispatcherType.REQUEST,DispatcherType.FORWARD,DispatcherType.ASYNC})
+//@WebFilter( urlPatterns={  "/admin/*" } , dispatcherTypes={DispatcherType.REQUEST,DispatcherType.FORWARD,DispatcherType.ASYNC})
 public class AdminLoginFilter implements Filter {
     @Override
     public void destroy() {

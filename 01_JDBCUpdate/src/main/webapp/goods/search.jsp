@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -9,6 +9,7 @@
 </head>
 <script type="text/javascript">
 function gotoPage(p){
+	//当前页面的默认值是1，当点击下一页的时候，将当前页码加一，并将表单再次提交
 	document.searchForm.page.value=p;
 	document.searchForm.submit();
 }
@@ -35,6 +36,8 @@ function gotoPage(p){
 </select>&nbsp;
 <input type="submit" value="查询">
 </form>
+
+
 </center>
 <hr>
 <table border="1px" cellpadding="1" cellspacing="0" width="80%" align="center">

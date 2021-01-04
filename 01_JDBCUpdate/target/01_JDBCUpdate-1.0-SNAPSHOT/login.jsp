@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>登录页-澳猫团</title>
+	<base href="<%=basePath%>">
 	<link rel="shortcut icon" href="favicon.ico">
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/base1.css">
@@ -58,27 +63,28 @@
 							<span>登录澳猫团</span>
 							<a target="_blank" href="register.html">免费注册</a>
 						</h3>
-						<p class="userName">
-							<em></em>
-							<input class="W310" placeholder="请输入您的手机号/邮箱" type="text">
-						</p>
-						<p class="passWord">
-							<em></em>
-							<input class="W310" placeholder="请输入密码" type="password">
-						</p>
-						<p class="clearfix yzm">
-							<input type="text" placeholder="验证码">
-							<span class="Ypic">
-								<span class="YP"></span>
-								<a href="#">换一张</a>
-							</span>
-						</p>
-						<p class="clearfix Jzmm">
-							<span class="checkbox checked"></span>
-							<span>记住密码</span>
-							<a target="_blank" href="#">忘记密码？</a>
-						</p>
-						<a class="loGin W310" href="userlogin.do">登录</a>
+						<form action="${pageContext.request.contextPath}/userLogin.do" method="post">
+							<p class="userName">
+								<em></em>
+								<input class="W310" placeholder="请输入您的手机号" type="text" name="userPhone" id="userPhone">
+							</p>
+							<p class="passWord">
+								<em></em>
+								<input class="W310" placeholder="请输入密码" type="password" name="userPass" id="userPass">
+							</p>
+							<p class="clearfix yzm">
+								<input type="text" placeholder="验证码" name="userCode">
+
+								<span class="YP"><a href="javascript:void(0)" id="sendCode_a">发送验证码</a></span>
+							</p>
+							<p class="clearfix Jzmm">
+								<span class="checkbox checked"></span>
+								<span>记住密码</span>
+								<a target="_blank" href="#">忘记密码？</a>
+							</p>
+							<input type="submit" class="loGin W310" value="登陆">
+						</form>
+
 					</div>
 					<div class="MCleft W115">
 						<img src="images/AppEr.png" alt="二维码">
@@ -141,6 +147,24 @@
 	<script src="js/jquery-1.7.2.min.js"></script>
 	<script src="js/jquery.lazyload.min.js"></script>
 	<script src="js/login.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		$("#sendCode_a").click(function(){
+			$.ajax({
+				type:"POST",
+				url:"${pageContext.request.contextPath}/alSend.do",
+				data:{"userPhone":$("#userPhone").val()},
+				dataType:"json",
+				success:function(msg){
+					if(msg.isSend){
+						alert("发送成功！");
+					}else{
+						alert("发送失败！");
+					}
+				}
+			});
+		});
+	});
+	</script>
 </body>
-</html>
 </html>

@@ -84,6 +84,9 @@ public class GoodsService {
             pageVO.setRecordCount(recordCount);
             pageVO.setList(goodsList);
             return pageVO;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException();
         } finally {
             JdbcUtils.closeConn();// 连接关闭
         }

@@ -22,7 +22,6 @@ public class EncodingFilter implements Filter {
         if("POST".equalsIgnoreCase(httpRequest.getMethod())){
             httpRequest.setCharacterEncoding(encoding);
         }
-
         chain.doFilter(httpRequest, httpResponse);
     }
 

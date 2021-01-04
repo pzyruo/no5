@@ -51,7 +51,7 @@ public class OrderDAO {
 		}
 	}
 	public void updateStatus(String orderId,int statusId){
-		String sql = "update orders set order_status_id=? where order_id=？";
+		String sql = "update orders set order_status_id=? where order_id=?";
 		template.update(sql,statusId,orderId);
 
 	}

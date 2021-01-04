@@ -34,32 +34,63 @@ $(function() {
 			};
 	});
 	// 删除
-	$('.IAbdw .delet').click(function(event) {
+	$('.IAbdw delet').click(function(event) {
 		$(this).parentsUntil('.IAbdArea').remove();
 	});
 	// 购物车金额结算
-	$('.IAul .reduce').click(function(event) {
-		var n=parseFloat($(this).siblings('input').val());
+	$(' .IAul .reduce').click(function(event){
+		var reduceObj = $(this);
+		var n=parseFloat(reduceObj.siblings('input').val());
 		n--;
-		if (n<0) {
-			n=0;
+		if (n>=1) {
+			//ajax.
+			var itemId = reduceObj.attr("itemId");
+			alert("reduce");
+			$.ajax({
+				type:"GET",
+				data:{"itemId":itemId,"num":n},
+				url:"cart/updateNum.do",
+				dataType:"JSON",
+				success:function(dataObj){
+					if(dataObj.isok) {
+						reduceObj.siblings('input').val(n);
+						var onePreice = parseFloat(reduceObj.parent('.num').siblings('.price').find('u').html());
+						var OlAll = n * onePreice;
+						reduceObj.parent('li').siblings('.Lastprice').children('u').html(OlAll.toFixed(2));
+						console.log(OlAll);
+						setTotal();
+					}
+				}
+			});
 		}
-		$(this).siblings('input').val(n);
-		var onePreice=parseFloat($(this).parent('.num').siblings('.price').find('u').html());
-		var OlAll=n*onePreice;
-		$(this).parent('li').siblings('.Lastprice').children('u').html(OlAll);
-		console.log(OlAll);
-		setTotal(); 
 	});
-	$('.IAul .add').click(function(event) {
-		var n=parseFloat($(this).siblings('input').val());
+	$(' .IAul .add').click(function(event) {
+		var addObj = $(this);
+		var n=parseFloat(addObj.siblings('input').val());
 		n++;
-		$(this).siblings('input').val(n);
-		var onePreice=parseFloat($(this).parent('.num').siblings('.price').find('u').html());
-		var OlAll=n*onePreice;
-		$(this).parent('li').siblings('.Lastprice').children('u').html(OlAll);
-		setTotal(); 
+		var itemId = addObj.attr("itemId");
+		// alert("add");
+		$.ajax({
+			type:"GET",
+			data:{"itemId":itemId,"num":n},
+			url:"cart/updateNum.do",
+			dataType:"JSON",
+			success:function(dataObj){
+				if(dataObj.isok){
+					addObj.siblings('input').val(n);
+					var onePreice=parseFloat(addObj.parent('.num').siblings('.price').find('u').html());
+					var OlAll=n*onePreice;
+					addObj.parent('li').siblings('.Lastprice').children('u').html(OlAll.toFixed(2));
+					setTotal(); 
+				}
+			},
+			error:function (){
+				alert("error");
+			}
+		});
 	});
+
+
 	function setTotal(){
 		var s=0;
 		var nu=0;
@@ -67,12 +98,9 @@ $(function() {
 			if ($(this).find('.lincheck').hasClass('checked')) {
 				s+=parseInt($(this).find('.Lastprice u').html());
 				nu+=parseInt($(this).find('.num input').val());
-			} else{
-				s=s;
-				nu=nu;
 			};
 		}); 
-		$("#allpri").html(s); 
+		$("#allpri").html(s.toFixed(2)); 
 		$('#allnum').html(nu);
 		} 
 		setTotal(); 

@@ -5,6 +5,8 @@ import com.pzyruo.util.JdbcUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.sql.SQLException;
+
 /**
  * @ClassName UserDao
  * @Description TODO
@@ -14,8 +16,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
  **/
 public class UserDao {
     JdbcTemplate template = new JdbcTemplate(JdbcUtils.getDataSource());
-    public Users findUser() {
-        String sql = "select * from users";
-        return template.queryForObject(sql,new BeanPropertyRowMapper<>(Users.class));
+    public Users findUser(String userPhone)throws SQLException {
+        String sql = "select * from users where user_phone=?";
+        return template.queryForObject(sql,new BeanPropertyRowMapper<>(Users.class),userPhone);
     }
 }

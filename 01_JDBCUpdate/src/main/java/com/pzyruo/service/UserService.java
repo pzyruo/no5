@@ -2,6 +2,9 @@ package com.pzyruo.service;
 
 import com.pzyruo.dao.UserDao;
 import com.pzyruo.domain.Users;
+import com.pzyruo.exception.NameException;
+
+import java.util.Objects;
 
 /**
  * @ClassName UserService
@@ -12,7 +15,18 @@ import com.pzyruo.domain.Users;
  **/
 public class UserService {
     UserDao userDao = new UserDao();
-    public Users findUser() {
-        return userDao.findUser();
+    public Users findUser(String userPhone, String userPass) throws NameException {
+        try {
+            Users user =this.userDao.findUser(userPhone);
+            String servePass = user.getUserPass();
+            if (Objects.equals(userPass,servePass)){
+                return user;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+           throw new NameException("未找到该用户");
+        }
+      return null;
     }
+
 }

@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -94,7 +94,7 @@ body {
         <td width="177" height="28" background="images/main_32.gif"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td width="20%"  height="22">&nbsp;</td>
-            <td width="59%" valign="bottom"><div align="center" class="STYLE1">当前用户：Admin</div></td>
+            <td width="59%" valign="bottom"><div align="center" class="STYLE1">当前用户：${sessionScope.admin.adminName}</div></td>
             <td width="21%">&nbsp;</td>
           </tr>
         </table></td>

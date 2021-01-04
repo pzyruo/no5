@@ -11,9 +11,12 @@ com\pzyruo\service\GoodsService.class
 com\pzyruo\controller\AdminLoginController.class
 com\pzyruo\util\DateUtil.class
 com\pzyruo\controller\OrderPayController.class
+com\pzyruo\util\RandomUtil.class
 com\pzyruo\service\AdminService.class
 com\pzyruo\util\JdbcUtils.class
+com\pzyruo\controller\ALSendController.class
 com\pzyruo\service\TypesService.class
+com\pzyruo\controller\SendRegCodeController.class
 com\pzyruo\domain\Details.class
 com\pzyruo\dao\RecDao.class
 com\pzyruo\controller\UserLoginController.class
@@ -25,6 +28,7 @@ com\pzyruo\service\FunService.class
 com\pzyruo\domain\Funs.class
 com\pzyruo\controller\AdminGoodsSearch.class
 com\pzyruo\exception\GoodsNumException.class
+com\pzyruo\controller\GoodsSearch.class
 com\pzyruo\domain\Roles.class
 com\pzyruo\controller\OrderToPayController.class
 com\pzyruo\domain\Types.class
